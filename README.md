@@ -33,28 +33,30 @@ sudo apt-get install libdb-dev libdb++-dev libboost-all-dev libminiupnpc-dev lib
 
 Download source code and compile the daemon
 ```
-wget alefork1.zip from ...
-unzip alefork1.zip
-cd alefork/src/leveldb
+git https://github.com/alephmarket/ALE.git
+cd ALE/src/leveldb
 chmod 755 *
 cd ..
 make -f makefile.unix RELEASE=1
+chmod +x alephd
+sudo mv alephd /usr/bin/
 ```
 
 * Configuring aleph.conf for each node
 ```
-cd /root/.aleph/
-vi aleph.conf
+mkdir $HOME/.aleph
+nano $HOME/.aleph/aleph.conf
 ```
 Paste this code in aleph.conf
 
 ```
-rpcuser=rpc_hbridnode
-rpcpassword=8cde5e64e7297b1cb4c495d1a
+rpcuser=rpc_supernode
+rpcpassword=randompassword
 rpcallowip=127.0.0.1
 rpcport=4210
 listen=1
 server=1
+txindex=1
 daemon=1
 ```
 
@@ -63,11 +65,9 @@ Then save it
 *Running the daemon / node
 
 ```
-cd ..
-cd alefork/src
-./alephd
+alephd
 ```
 
 you should get `Aleph server is starting`
 
-for more information about it tyype: `./alephd getmininginfo`
+for more information about it type: `./alephd getinfo`
